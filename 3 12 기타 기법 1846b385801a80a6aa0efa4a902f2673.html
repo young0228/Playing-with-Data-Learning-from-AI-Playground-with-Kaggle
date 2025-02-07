@@ -1,0 +1,684 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>3.12 기타 기법</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="1846b385-801a-80a6-aa0e-fa4a902f2673" class="page sans"><header><h1 class="page-title">3.12 기타 기법</h1><p class="page-description"></p></header><div class="page-body"><h1 id="1846b385-801a-804b-ac7d-ff48d57c7cf4" class=""><strong>3.12.1 배경 메커니즘의 이해</strong></h1><ol type="1" id="1846b385-801a-80c2-b3cc-e1329e242af4" class="numbered-list" start="1"><li>사용자 행동에 주목<ol type="a" id="1846b385-801a-8032-9500-de37c5b56506" class="numbered-list" start="1"><li>사용자 성격, 행동 특징, 행동 사이클을 표현하는 특징 만들기</li></ol><ol type="a" id="1846b385-801a-80f1-8d13-ee8ecf46d341" class="numbered-list" start="2"><li>이용 목적의 클러스터로 나눠 생각하기</li></ol><ol type="a" id="1846b385-801a-8091-8273-ceb5d4cb2a4c" class="numbered-list" start="3"><li>특정 상품에 대한 선호도가 있을지 생각하기</li></ol><ol type="a" id="1846b385-801a-80ac-a12b-da7c64aac135" class="numbered-list" start="4"><li>같은 물건을 이미 구매한 경우 등 행동 저해 요소는 없을지 생각하기</li></ol><ol type="a" id="1846b385-801a-8063-be22-fae4ef5189b1" class="numbered-list" start="5"><li>사용자가 웹사이트에서 어떤 식으로 화면을 이동하여 상품을 구매했는지 살펴보기</li></ol></li></ol><ol type="1" id="1846b385-801a-8046-98a2-d7f29102e8b0" class="numbered-list" start="2"><li>서비스 제공 측의 동향 주목<ol type="a" id="1846b385-801a-8034-8782-f25c92ed266b" class="numbered-list" start="1"><li>어떤 상품의 판매 개수가 0이라 해도, 수요 자체가 없었다기보다는 무언가의 사정으로 재고가 없었던 경우일 가능성</li></ol><ol type="a" id="1846b385-801a-804f-b658-ec114d84dd80" class="numbered-list" start="2"><li>휴가나 유지보수 작업이 그 전후 기간의 서비스 이용에 미치는 영향</li></ol><ol type="a" id="1846b385-801a-801d-8d33-fb71b7354068" class="numbered-list" start="3"><li>앱/웹 서비스로 검색하면 맨 위에 표시될지 여부와 상관관계가 있을 법한 특징 생성</li></ol><ol type="a" id="1846b385-801a-8097-81b5-eb9eba7fa532" class="numbered-list" start="4"><li>앱/웹 서비스로 검색이나 리스트 박스의 선택 사항을 고려 (역에서 5분 이내, 10분 이내, 그 이상 거리로 검색 등)</li></ol></li></ol><ol type="1" id="1856b385-801a-804c-8048-e68b4e0a6425" class="numbered-list" start="3"><li>업계에서 주로 사용하는 분석 방법<ol type="a" id="1856b385-801a-8078-8ebb-c13e8a04af9a" class="numbered-list" start="1"><li>RFM 분석이라는 고객 분석 기법을 이용하여 사용자 분류와 특징을 생성</li></ol><ol type="a" id="1856b385-801a-8017-9039-cf1b22a8f0ed" class="numbered-list" start="2"><li>개인의 신용 리스크를 심사할 때 어떤 항목이 대상이 될 수 있을지 관련 단어로 조사</li></ol><ol type="a" id="1856b385-801a-8078-8aab-f6ceefc51fbe" class="numbered-list" start="3"><li>질병 진단 기준과 관련해 어떤 식의 점수 책정 방법이나 조건 분기 규칙으로 진단되는지, 어떤 특징과의 조합이 고려되는지 조사</li></ol></li></ol><ol type="1" id="1856b385-801a-8011-b608-d8b24c578703" class="numbered-list" start="4"><li>여러 변수를 조합하여 지수 작성<ol type="a" id="1856b385-801a-80d5-a336-ff7a71270d4f" class="numbered-list" start="1"><li>신장이나 체중으로부터 BMI 구하기</li></ol><ol type="a" id="1856b385-801a-8074-a63e-de182b2fd5d7" class="numbered-list" start="2"><li>기온 및 습도에서 불쾌지수 구하기</li></ol></li></ol><ol type="1" id="1856b385-801a-8010-b366-fb52a1ae8aa8" class="numbered-list" start="5"><li>자연 현상의 메커니즘에 주목</li></ol><ol type="1" id="1856b385-801a-80ca-9735-d75014d37b12" class="numbered-list" start="6"><li>경진 대회의 대상 서비스 이용</li></ol><h1 id="1846b385-801a-8006-8134-f090860c7018" class=""><strong>3.12.2 행 데이터의 관계성에 주목 </strong></h1><h1 id="1846b385-801a-8098-9045-c664b388466f" class=""><strong>3.12.3 상댓값에 주목</strong></h1><h1 id="1846b385-801a-801a-80fc-ede23d375ae9" class=""><strong>3.12.4 위치 정보에 주목</strong></h1><h1 id="1846b385-801a-805b-9a43-c51e859c4149" class=""><strong>3.12.5 자연어 처리 기법</strong></h1><ol type="1" id="1886b385-801a-8083-b5d3-f2eba4a4781f" class="numbered-list" start="1"><li>Bag of Words(BoW)<ol type="a" id="1886b385-801a-80d1-9612-f0f14e87e483" class="numbered-list" start="1"><li>텍스트를 단어로 분할하고 각 단어의 출현 수를 순서에 상관없이 단순하게 세는 방식</li></ol><ol type="a" id="1886b385-801a-801f-98e2-ea9bbc180d80" class="numbered-list" start="2"><li>n개의 텍스트가 있고 텍스트에 출현할 수 있는 단어의 종류를 k개라고 했을 때, 각 텍스트는 길이 k의 벡터가 됨 (n x k 행렬)</li></ol></li></ol><ol type="1" id="1886b385-801a-8093-b27b-ccc7d843a63c" class="numbered-list" start="2"><li>n-gram<ol type="a" id="1886b385-801a-80f1-86e2-da60c110f620" class="numbered-list" start="1"><li>BoW에서 분할하는 단위를, 단어가 아닌 연속되는 단어 뭉치 단위로 끊는 방법</li></ol><ol type="a" id="1886b385-801a-809b-a7c1-d8973415f2fb" class="numbered-list" start="2"><li>Ex. This is a setence<ol type="i" id="1886b385-801a-8037-8033-dfa2d8dce263" class="numbered-list" start="1"><li>This-is, is-a, a-sentence</li></ol></li></ol><ol type="a" id="1886b385-801a-80e3-96c5-f411c24fc347" class="numbered-list" start="3"><li>텍스트에 포함된 정보를 유지하기는 좋지만 종류의 수가 크게 늘어날 뿐만 아니라 희소 데이터가 됨</li></ol></li></ol><ol type="1" id="1886b385-801a-80b0-a179-d81971d38516" class="numbered-list" start="3"><li>tf-idf<ol type="a" id="1886b385-801a-80f4-972b-cbaf17796927" class="numbered-list" start="1"><li>BoW에서 작성한 단어-문서 카운트 행렬을 변환하는 기법<ol type="i" id="1886b385-801a-8055-8e33-c02615a2bdb7" class="numbered-list" start="1"><li>단어 빈도(TF): 어떤 텍스트에서의 특정 단어의 출현 비율</li></ol><ol type="i" id="1886b385-801a-80d7-948e-e62a3edc57bc" class="numbered-list" start="2"><li>역문서 빈도(IDF): 특정 단어가 나타나는 문서의 수. 특정 텍스트에서만 나타나는 단어의 중요성을 높이는 역할</li></ol></li></ol></li></ol><ol type="1" id="1886b385-801a-8051-b1a2-ddb96ad78037" class="numbered-list" start="4"><li>단어 임베딩<ol type="a" id="1886b385-801a-8079-a272-fbf1df15bc88" class="numbered-list" start="1"><li>단어를 수치 벡터로 변환하는 방법</li></ol><ol type="a" id="1886b385-801a-80bd-b4cd-eedc46acf491" class="numbered-list" start="2"><li>학습 완료된 임베딩을 사용하면 단어를 의미와 성질이 반영된 수치 벡터로 변환할 수 있음</li></ol></li></ol><h1 id="1846b385-801a-8053-864b-cabf983f208b" class=""><strong>3.12.6 자연어 처리 기법의 응용</strong></h1><ul id="1886b385-801a-80c7-8421-d70deed9598b" class="bulleted-list"><li style="list-style-type:disc">BoW, n-gram, tf-idf 같은 기법을 자연어와 관계 없는 데이터에도 적용할 수 있음</li></ul><ul id="1886b385-801a-8071-ab8d-d26b8422afd2" class="bulleted-list"><li style="list-style-type:disc">어떠한 단어 등 요소 배열이 있을 때 이를 문장처럼 파악하고 자연어 처리 방법을 적용할 수 있음</li></ul><h1 id="1846b385-801a-8024-9ddf-eb3883e407d3" class=""><strong>3.12.7 토픽 모델을 활용한 범주형 변수 변환</strong></h1><ul id="1886b385-801a-8094-98b4-ec09731206cd" class="bulleted-list"><li style="list-style-type:disc">다른 범주형 변수와의 동시출현 정보로부터 범주형 변수를 수치 벡터로 변환하는 방법</li></ul><ul id="1886b385-801a-8014-8d26-f5f8cb7028dd" class="bulleted-list"><li style="list-style-type:disc">두 범주형 변수 중 하나를 문서, 다른 하나를 단어로 간주하면, 각 문서에 각 단어가 몇 번 등장하는지 동시 출현 정보를 통해 단어-문서 카운트 행렬을 만들 수 있음</li></ul><ul id="1886b385-801a-80a4-bc37-ce735cfde498" class="bulleted-list"><li style="list-style-type:disc">여기에 잠재 디리클레 할당을 적용하면, 첫 번째 변수를 문서가 속한 토픽에 대한 확률을 나타내는 수치 벡터로 변환할 수 있음</li></ul><h1 id="1846b385-801a-80cb-9c60-e2bceb2ddb81" class=""><strong>3.12.8 이미지 특징을 다루는 방법</strong></h1><ul id="1886b385-801a-80c4-8062-e4f6f9a62c84" class="bulleted-list"><li style="list-style-type:disc">이미지넷 데이터로 학습한 신경망으로 이미지를 예측하고, 출력층에 가까운 층의 출력값을 특징으로 하는 방법 사용</li></ul><ul id="1886b385-801a-8052-b754-dab2efd22873" class="bulleted-list"><li style="list-style-type:disc">이미지의 크기나 색상, 밝기와 같은 기본적인 이미지 특징, 딥러닝 이전에 많이 쓰이던 SIFT의 특징, EXIF 태그와 같은 메타 정보도 활용 가능</li></ul><h1 id="1846b385-801a-8051-9965-e84097b42a9e" class=""><strong>3.12.9 결정 트리의 특징 변환</strong></h1><ul id="1886b385-801a-806f-bb62-e6929394b64f" class="bulleted-list"><li style="list-style-type:disc">결정 트리를 작성한 뒤, 각 행 데이터가 분기에 따라 어느 잎 노드로 떨어지는지를 범주형 변수의 특징으로 만들어 다른 모델에 투입하는 독특한 기술</li></ul><ul id="1886b385-801a-8011-b0a6-dc1c0ecd9a90" class="bulleted-list"><li style="list-style-type:disc">GBDP 모델에서 만들어진 결정 트리에 많이 쓰임</li></ul><h1 id="1846b385-801a-80b9-a77b-f4d98a0f15a4" class=""><strong>3.12.10 익명화 데이터의 원래 값 추측</strong></h1><ul id="1886b385-801a-806d-8184-c8817c71f934" class="bulleted-list"><li style="list-style-type:disc">나이가 표준화되어 주어졌다면 값의 간격으로부터 이산값이라는 것을 대략 알 수 있으므로, 먼저 값 간격 중의 오차를 제외하고 가장 작은 값으로 나눗셈 해보기. 그러면 거의 정수가 되므로 최댓값/최솟값이나 분포, 많이 출현하는 값을 바탕으로 해당 값이 나이인지 아닌지를 추측할 수 있음</li></ul><h1 id="1846b385-801a-80d1-8c89-c1232b07f78a" class=""><strong>3.12.11 데이터 오류 수정</strong></h1></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
